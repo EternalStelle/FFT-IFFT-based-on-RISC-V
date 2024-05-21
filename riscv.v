@@ -6,7 +6,7 @@ module riscv (
 //PC output
 wire[`instWidth-1:0] pc_curr_pc;
 //MUX_PC output
-//wire[`instWidth-1:0] mux_pc_next_pc;
+wire[`instWidth-1:0] mux_pc_next_pc;
 wire mux_pc_pipelineFlush;
 //Inst memory output
 wire[`instWidth-1:0] inst_mem_inst;
@@ -90,13 +90,9 @@ wire idex_hazarded;
 //PC
 pc u_pc(
     .clk(clk), .rst(rst),
-    .curr_pc(pc_curr_pc),
-    .pc_hazarded(pc_hazarded), .jump(idex_jump),
-    .zero(exmem_zero), .branch(exmem_branch), .reg1_data(idex_reg1_data),
-    .imm(idex_imm), .pcWithImm(exmem_pcwithimm), .pipelineFlush(mux_pc_pipelineFlush),
-    .ex_curr_pc(idex_curr_pc)
+    .next_pc(mux_pc_next_pc), .curr_pc(pc_curr_pc),
+    .pc_hazarded(pc_hazarded)
 );
-/*
 //MUX_PC
 mux_pc u_mux_pc(
     .jump(idex_jump), .zero(exmem_zero),
@@ -105,7 +101,6 @@ mux_pc u_mux_pc(
     .pipelineFlush(mux_pc_pipelineFlush),
     .next_pc(mux_pc_next_pc), .ex_curr_pc(idex_curr_pc)
 );
-*/
 //Inst memory
 inst_mem u_inst_mem(
     .pc(pc_curr_pc), .inst(inst_mem_inst)
