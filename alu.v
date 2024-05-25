@@ -179,11 +179,6 @@ always @(*) begin
         zero <= (alusrc1 >= alusrc2) ? 1'b1 : 1'b0;
     end
     `aluLUI: alu_result <= alusrc2;
-    endcase
-end
-
-always @(posedge clk) begin
-    case (aluop)    
     `aluFFTLoad: begin
         case (fft_state)
         'd0:begin
@@ -415,7 +410,7 @@ always @(posedge clk) begin
             fft_data_valid = `funDisable;
         end
         endcase
-        end
-endcase
+    end  
+    endcase
 end
 endmodule
