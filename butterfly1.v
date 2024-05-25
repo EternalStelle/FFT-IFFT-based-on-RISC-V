@@ -38,22 +38,22 @@ module butterfly1 (
 );
 always @(posedge clk) begin
     if(fft_data_valid) begin
-    fft_d1_real_o <= (fft_d1_real*256+fft_d5_real*256)/256;
-    fft_d1_imag_o <= (fft_d1_imag*256+fft_d5_imag*256)/256;
-    fft_d2_real_o <= (fft_d1_real*256-fft_d5_real*256)/256;
-    fft_d2_imag_o <= (fft_d1_imag*256-fft_d5_imag*256)/256;
-    fft_d3_real_o <= (fft_d3_real*256+fft_d7_real*256)/256;
-    fft_d3_imag_o <= (fft_d3_imag*256+fft_d7_imag*256)/256;
-    fft_d4_real_o <= (fft_d3_real*256-fft_d7_real*256)/256;
-    fft_d4_imag_o <= (fft_d3_imag*256-fft_d7_imag*256)/256;
-    fft_d5_real_o <= (fft_d2_real*256+fft_d6_real*256)/256;
-    fft_d5_imag_o <= (fft_d2_imag*256+fft_d6_imag*256)/256;
-    fft_d6_real_o <= (fft_d2_real*256-fft_d6_real*256)/256;
-    fft_d6_imag_o <= (fft_d2_imag*256-fft_d6_imag*256)/256;
-    fft_d7_real_o <= (fft_d4_real*256+fft_d8_real*256)/256;
-    fft_d7_imag_o <= (fft_d4_imag*256+fft_d8_imag*256)/256;
-    fft_d8_real_o <= (fft_d4_real*256-fft_d8_real*256)/256;
-    fft_d8_imag_o <= (fft_d4_imag*256-fft_d8_imag*256)/256;
+    fft_d1_real_o <= ((fft_d1_real<<8)+(fft_d5_real<<8)>>8);
+    fft_d1_imag_o <= ((fft_d1_imag<<8)+(fft_d5_imag<<8)>>8);
+    fft_d2_real_o <= ((fft_d1_real<<8)-(fft_d5_real<<8)>>8);
+    fft_d2_imag_o <= ((fft_d1_imag<<8)-(fft_d5_imag<<8)>>8);
+    fft_d3_real_o <= ((fft_d3_real<<8)+(fft_d7_real<<8)>>8);
+    fft_d3_imag_o <= ((fft_d3_imag<<8)+(fft_d7_imag<<8)>>8);
+    fft_d4_real_o <= ((fft_d3_real<<8)-(fft_d7_real<<8)>>8);
+    fft_d4_imag_o <= ((fft_d3_imag<<8)-(fft_d7_imag<<8)>>8);
+    fft_d5_real_o <= ((fft_d2_real<<8)+(fft_d6_real<<8)>>8);
+    fft_d5_imag_o <= ((fft_d2_imag<<8)+(fft_d6_imag<<8)>>8);
+    fft_d6_real_o <= ((fft_d2_real<<8)-(fft_d6_real<<8)>>8);
+    fft_d6_imag_o <= ((fft_d2_imag<<8)-(fft_d6_imag<<8)>>8);
+    fft_d7_real_o <= ((fft_d4_real<<8)+(fft_d8_real<<8)>>8);
+    fft_d7_imag_o <= ((fft_d4_imag<<8)+(fft_d8_imag<<8)>>8);
+    fft_d8_real_o <= ((fft_d4_real<<8)-(fft_d8_real<<8)>>8);
+    fft_d8_imag_o <= ((fft_d4_imag<<8)-(fft_d8_imag<<8)>>8);
     butterfly1_ready <= `funEnable;
     end else begin
     butterfly1_ready <= `funDisable;

@@ -148,37 +148,42 @@ butterfly3 u_butterfly3(
 .fft_d7_real_o(fft_d7_real_o), .fft_d7_imag_o(fft_d7_imag_o),
 .fft_d8_real_o(fft_d8_real_o), .fft_d8_imag_o(fft_d8_imag_o));
 
-always @(posedge clk) begin
-    zero  = 1'b0;
+always @(*) begin
+    zero  <= 1'b0;
     case (aluop)
-    `aluPlus: alu_result = alusrc1 + alusrc2;
-    `aluSub: alu_result = alusrc1 - alusrc2;
-    `aluMul: alu_result = alusrc1 * alusrc2;
-    `aluXor: alu_result = $unsigned(alusrc1) ^ $unsigned(alusrc2);
-    `aluOr: alu_result = $unsigned(alusrc1) | $unsigned(alusrc2);
-    `aluAnd: alu_result = $unsigned(alusrc1) & $unsigned(alusrc2);
-    `aluSLL: alu_result = $unsigned(alusrc1) << $unsigned(alusrc2);
-    `aluSRL: alu_result = $unsigned(alusrc1) >> $unsigned(alusrc2);
-    `aluSRA: alu_result = $unsigned(alusrc1) >>> $unsigned(alusrc2);
-    `aluSLT: alu_result = (alusrc1 < alusrc2) ? 1'b1 : 1'b0; 
-    `aluSLTU: alu_result = ($unsigned(alusrc1) < $unsigned(alusrc2)) ? 1'b1 : 1'b0;
+    `aluPlus: alu_result <= alusrc1 + alusrc2;
+    `aluSub: alu_result <= alusrc1 - alusrc2;
+    `aluMul: alu_result <= alusrc1 * alusrc2;
+    `aluXor: alu_result <= $unsigned(alusrc1) ^ $unsigned(alusrc2);
+    `aluOr: alu_result <= $unsigned(alusrc1) | $unsigned(alusrc2);
+    `aluAnd: alu_result <= $unsigned(alusrc1) & $unsigned(alusrc2);
+    `aluSLL: alu_result <= $unsigned(alusrc1) << $unsigned(alusrc2);
+    `aluSRL: alu_result <= $unsigned(alusrc1) >> $unsigned(alusrc2);
+    `aluSRA: alu_result <= $unsigned(alusrc1) >>> $unsigned(alusrc2);
+    `aluSLT: alu_result <= (alusrc1 < alusrc2) ? 1'b1 : 1'b0; 
+    `aluSLTU: alu_result <= ($unsigned(alusrc1) < $unsigned(alusrc2)) ? 1'b1 : 1'b0;
     `aluBEQ: begin
         alu_result <= 32'hxxxxxxxx;
-        zero = (alusrc1 == alusrc2) ? 1'b1 : 1'b0;
+        zero <= (alusrc1 == alusrc2) ? 1'b1 : 1'b0;
     end
     `aluBNE: begin
         alu_result <= 32'hxxxxxxxx;
-        zero = (alusrc1 != alusrc2) ? 1'b1 : 1'b0;
+        zero <= (alusrc1 != alusrc2) ? 1'b1 : 1'b0;
     end 
     `aluBLT: begin
         alu_result <= 32'hxxxxxxxx;
-        zero = (alusrc1 < alusrc2) ? 1'b1 : 1'b0;
+        zero <= (alusrc1 < alusrc2) ? 1'b1 : 1'b0;
     end 
     `aluBGE: begin
         alu_result <= 32'hxxxxxxxx;
-        zero = (alusrc1 >= alusrc2) ? 1'b1 : 1'b0;
+        zero <= (alusrc1 >= alusrc2) ? 1'b1 : 1'b0;
     end
-    `aluLUI: alu_result = alusrc2;
+    `aluLUI: alu_result <= alusrc2;
+    endcase
+end
+
+always @(posedge clk) begin
+    case (aluop)    
     `aluFFTLoad: begin
         case (fft_state)
         'd0:begin
@@ -195,13 +200,13 @@ always @(posedge clk) begin
         end
         'd2:begin
             fft_din = alusrc1;
-            fft_d5_real = fft_din;
+            fft_d2_real = fft_din;
             fft_state = 'd3;
             fft_data_valid = `funDisable;
         end
         'd3:begin
             fft_din = alusrc1;
-            fft_d5_imag = fft_din;
+            fft_d2_imag = fft_din;
             fft_state = 'd4;
             fft_data_valid = `funDisable;
         end
@@ -219,25 +224,25 @@ always @(posedge clk) begin
         end
         'd6:begin
             fft_din = alusrc1;
-            fft_d7_real = fft_din;
+            fft_d4_real = fft_din;
             fft_state = 'd7;
             fft_data_valid = `funDisable;
         end
         'd7:begin
             fft_din = alusrc1;
-            fft_d7_imag = fft_din;
+            fft_d4_imag = fft_din;
             fft_state = 'd8;
             fft_data_valid = `funDisable;
         end
         'd8:begin
             fft_din = alusrc1;
-            fft_d2_real = fft_din;
+            fft_d5_real = fft_din;
             fft_state = 'd9;
             fft_data_valid = `funDisable;
         end
         'd9:begin
             fft_din = alusrc1;
-            fft_d2_imag = fft_din;
+            fft_d5_imag = fft_din;
             fft_state = 'd10;
             fft_data_valid = `funDisable;
         end
@@ -255,13 +260,13 @@ always @(posedge clk) begin
         end
         'd12:begin
             fft_din = alusrc1;
-            fft_d4_real = fft_din;
+            fft_d7_real = fft_din;
             fft_state = 'd13;
             fft_data_valid = `funDisable;
         end
         'd13:begin
             fft_din = alusrc1;
-            fft_d4_imag = fft_din;
+            fft_d7_imag = fft_din;
             fft_state = 'd14;
             fft_data_valid = `funDisable;
         end
@@ -275,8 +280,16 @@ always @(posedge clk) begin
             fft_din = alusrc1;
             fft_d8_imag = fft_din;
             fft_state = 'd16;
-            fft_data_valid = `funEnable;
+            fft_data_valid = `funDisable;
         end
+        'd16:begin
+            fft_state = 'd16;
+            fft_data_valid = `funDisable;
+        end
+        endcase
+    end
+    `aluFFTCAL: begin
+        case(fft_state)
         'd16:begin
             fft_state = 'd17;
             fft_data_valid = `funEnable;
@@ -301,6 +314,10 @@ always @(posedge clk) begin
             fft_state = 'd22;
             fft_data_valid = `funDisable;
         end
+        endcase
+    end
+    `aluFFTExport: begin
+        case(fft_state)
         'd22:begin
             fft_dout = fft_d1_real_o;
             alu_result = fft_dout;
@@ -398,7 +415,7 @@ always @(posedge clk) begin
             fft_data_valid = `funDisable;
         end
         endcase
-    end  
-    endcase
+        end
+endcase
 end
 endmodule
