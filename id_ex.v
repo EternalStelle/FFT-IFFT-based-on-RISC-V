@@ -16,7 +16,7 @@ module id_ex (
     input wire alusrc,
     input wire[1:0] jump,
     input wire[2:0] funct3,
-    input wire funct7,
+    input wire[6:0] funct7,
     input wire pipelineFlush,
     input wire[4:0] reg1_raddr,
     input wire[4:0] reg2_raddr,
@@ -35,7 +35,7 @@ module id_ex (
     output reg alusrc_o,
     output reg[1:0] jump_o,
     output reg[2:0] funct3_o,
-    output reg funct7_o,
+    output reg[6:0] funct7_o,
     output reg[4:0] reg1_raddr_o,
     output reg[4:0] reg2_raddr_o
 );

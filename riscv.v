@@ -41,14 +41,14 @@ wire[1:0] idex_aluop;
 wire idex_alusrc;
 wire[1:0] idex_jump;
 wire[2:0] idex_funct3;
-wire idex_funct7;
+wire[6:0] idex_funct7;
 wire idex_mem2reg;
 wire[4:0] idex_reg1_raddr;
 wire[4:0] idex_reg2_raddr;
 //ALUSRC
 wire[`instWidth-1:0] alusrc;
 //ALU CTRL
-wire[3:0] alufunc;
+wire[`aluOP-1:0] alufunc;
 //ALU
 wire[`instWidth-1:0] alu_result;
 wire alu_zero;
@@ -142,7 +142,7 @@ id_ex u_id_ex(
     .mem2reg(ctrl_mem2reg), .mem_wena(ctrl_mem_wena),
     .aluop(ctrl_aluop), .alusrc(ctrl_alusrc),
     .jump(ctrl_jump), .funct3(ifid_inst[14:12]),
-    .funct7(ifid_inst[30]), .curr_pc_o(idex_curr_pc),
+    .funct7(ifid_inst[31:25]), .curr_pc_o(idex_curr_pc),
     .reg1_data_o(idex_reg1_data), .reg2_data_o(idex_reg2_data),
     .imm_o(idex_imm), .reg_waddr_o(idex_reg_waddr),
     .branch_o(idex_branch), .reg_wena_o(idex_reg_wena),
@@ -158,13 +158,13 @@ id_ex u_id_ex(
 //Forward A
 forward_a u_forward_a(
     .forward_decision(forward_a), .idex_reg1_data(idex_reg1_data),
-    .exmem_result(exmem_alu_result), .memwb_result(memwb_alu_result),
+    .exmem_result(exmem_alu_result), .memwb_result(reg_data_wb),
     .forward_data(forward_data_a)
 );
 //Forward B
 forward_b u_forward_b(
     .forward_decision(forward_b), .idex_reg2_data(idex_reg2_data),
-    .exmem_result(exmem_alu_result), .memwb_result(memwb_alu_result),
+    .exmem_result(exmem_alu_result), .memwb_result(reg_data_wb),
     .forward_data(forward_data_b)
 );
 //ALU_SRC
@@ -179,6 +179,7 @@ alu_ctrl u_alu_ctrl(
 );
 //ALU
 alu u_alu(
+    .clk(clk),
     .alusrc1(forward_data_a), .alusrc2(alusrc),
     .aluop(alufunc), .alu_result(alu_result),
     .zero(alu_zero)

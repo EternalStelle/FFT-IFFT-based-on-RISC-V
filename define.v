@@ -12,13 +12,6 @@
 //Register Definition
 `define regAddrDepth 32
 `define regAddrWidth 5
-//Immediate Number Generator Definition
-`define immGenType 3
-`define immGenTypeI `immGenType'b000
-`define immGenTypeS `immGenType'b001
-`define immGenTypeB `immGenType'b010
-`define immGenTypeU `immGenType'b011
-`define immGenTypeJ `immGenType'b100
 //OPCODE
 `define opcodeR 7'b0110011
 `define opcodeI 7'b0010011
@@ -32,19 +25,23 @@
 `define aluStore 2'b01
 `define aluBranch 2'b10
 //ALU definition
-`define aluOP 4
-`define aluPlus `aluOP'b0000
-`define aluSub `aluOP'b0001
-`define aluMul `aluOP'b0010
-`define aluXor `aluOP'b0011
-`define aluOr `aluOP'b0100
-`define aluAnd `aluOP'b0101
-`define aluSLL `aluOP'b0110
-`define aluSRL `aluOP'b0111
-`define aluSRA `aluOP'b1000
-`define aluSLT `aluOP'b1001
-`define aluSLTU `aluOP'b1010
-`define aluBEQ `aluOP'b1011
-`define aluBNE `aluOP'b1100
-`define aluBLT `aluOP'b1101
-`define aluBGE `aluOP'b1110
+`define aluOP 5
+`define aluPlus `aluOP'b00000
+`define aluSub `aluOP'b00001
+`define aluMul `aluOP'b00010
+`define aluXor `aluOP'b00011
+`define aluOr `aluOP'b00100
+`define aluAnd `aluOP'b00101
+`define aluSLL `aluOP'b00110
+`define aluSRL `aluOP'b00111
+`define aluSRA `aluOP'b01000
+`define aluSLT `aluOP'b01001
+`define aluSLTU `aluOP'b01010
+`define aluBEQ `aluOP'b01011
+`define aluBNE `aluOP'b01100
+`define aluBLT `aluOP'b01101
+`define aluBGE `aluOP'b01110
+`define aluLUI `aluOP'b01111
+`define aluFFTLoad `aluOP'b10000
+`define aluFFTCAL `aluOP'b10001
+`define aluFFTExport `aluOP'b10010

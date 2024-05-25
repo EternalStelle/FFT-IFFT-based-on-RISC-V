@@ -34,7 +34,7 @@ always @(*) begin
         `opcodeIL: begin
             branch   <= `funDisable;
             reg_wena <= `funEnable;
-            mem2reg  <= `funDisable;
+            mem2reg  <= `funEnable;
             mem_rena <= `funEnable;
             mem_wena <= `funDisable;
             aluop    <= `aluLoad;
@@ -62,7 +62,7 @@ always @(*) begin
             jump     <= `jumpDisable;
         end
         7'b1101111: begin //JAL
-            branch   <= `funEnable;
+            branch   <= `funDisable;
             reg_wena <= `funEnable;
             mem2reg  <= `funDisable;
             mem_rena <= `funDisable;
@@ -72,7 +72,7 @@ always @(*) begin
             jump     <= `jumpJAL;
         end
         7'b1100111: begin //JALR
-            branch   <= `funEnable;
+            branch   <= `funDisable;
             reg_wena <= `funEnable;
             mem2reg  <= `funDisable;
             mem_rena <= `funDisable;
@@ -87,7 +87,7 @@ always @(*) begin
             mem2reg  <= `funDisable;
             mem_rena <= `funDisable;
             mem_wena <= `funDisable;
-            aluop    <= `aluR;
+            aluop    <= `aluLoad;
             alusrc   <= 1'b1;
             jump     <= `jumpDisable;
         end

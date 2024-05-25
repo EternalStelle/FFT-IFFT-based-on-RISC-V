@@ -5,5 +5,5 @@ module alusrc (
     input wire[`instWidth-1:0] imm,
     output wire[`instWidth-1:0] alu_src
 );
-assign alu_src = (alusel) ? reg2_data : imm;
+assign alu_src = (alusel) ? imm : reg2_data;
 endmodule
