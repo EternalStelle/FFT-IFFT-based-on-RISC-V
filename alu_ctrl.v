@@ -11,9 +11,11 @@ module alu_ctrl (input wire[1:0] aluop,
                         7'h00: alufunc = `aluPlus;
                         7'h20: alufunc = `aluSub;
                         7'h01: alufunc = `aluMul;
+                        /*
                         7'h10: alufunc = `aluFFTLoad;
                         7'h02: alufunc = `aluFFTCAL;
                         7'h03: alufunc = `aluFFTExport;
+                        */
                     endcase
                     3'h4: alufunc = `aluXor;
                     3'h6: alufunc = `aluOr;
@@ -39,6 +41,9 @@ module alu_ctrl (input wire[1:0] aluop,
                 3'h4: alufunc = `aluBLT;
                 3'h5: alufunc = `aluBGE;
             endcase
+            `aluSrcAUIPC: begin
+                alufunc = `aluAUIPC;
+            end
         endcase
     end
 endmodule

@@ -18,12 +18,13 @@
 `define opcodeIL 7'b0000011
 `define opcodeS 7'b0100011
 `define opcodeB 7'b1100011
-`define opcodeU 7'b0110111
+//`define opcodeU 7'b0110111
 //ALU CTRL definition
 `define aluR 2'b00
 `define aluLoad 2'b01
 `define aluStore 2'b01
 `define aluBranch 2'b10
+`define aluSrcAUIPC 2'b11
 //ALU definition
 `define aluOP 5
 `define aluPlus `aluOP'b00000
@@ -42,6 +43,9 @@
 `define aluBLT `aluOP'b01101
 `define aluBGE `aluOP'b01110
 `define aluLUI `aluOP'b01111
+`define aluAUIPC `aluOP'b10000
+/*
 `define aluFFTLoad `aluOP'b10000
 `define aluFFTCAL `aluOP'b10001
 `define aluFFTExport `aluOP'b10010
+*/

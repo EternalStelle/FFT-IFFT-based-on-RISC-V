@@ -23,7 +23,7 @@ wire ctrl_mem2reg;
 wire ctrl_mem_rena;
 wire ctrl_mem_wena;
 wire[1:0] ctrl_aluop;
-wire ctrl_alusrc;
+wire[1:0] ctrl_alusrc;
 wire[1:0] ctrl_jump;
 //Immediate Number generator output
 wire[`instWidth-1:0] imm;
@@ -38,7 +38,7 @@ wire idex_reg_wena;
 wire idex_mem_rena;
 wire idex_mem_wena;
 wire[1:0] idex_aluop;
-wire idex_alusrc;
+wire[1:0] idex_alusrc;
 wire[1:0] idex_jump;
 wire[2:0] idex_funct3;
 wire[6:0] idex_funct7;
@@ -52,6 +52,11 @@ wire[`aluOP-1:0] alufunc;
 //ALU
 wire[`instWidth-1:0] alu_result;
 wire alu_zero;
+//FFT module
+wire[`instWidth-1:0] fftData;
+wire butterfly3_ready;
+//MUX_FFT_ALU
+wire[`instWidth-1:0] mux_fft_alu;
 //PC ADD
 wire[`instWidth-1:0] pcwithimm;
 //EX_MEM
@@ -179,11 +184,24 @@ alu_ctrl u_alu_ctrl(
 );
 //ALU
 alu u_alu(
-    .clk(clk),
+    .curr_pc(idex_curr_pc),
     .alusrc1(forward_data_a), .alusrc2(alusrc),
     .aluop(alufunc), .alu_result(alu_result),
     .zero(alu_zero)
 );
+/*
+//FFT module
+fft u_fft(
+    .clk(clk), .dataSrc(forward_data_a),
+    .aluop(alufunc), .fftData(fftData),
+    .butterfly3_ready(butterfly3_ready)
+);
+//MUX_FFT_ALU
+mux_fft_alu u_mux_fft_alu(
+    .butterfly3_ready(butterfly3_ready), .alu_result(alu_result),
+    .fftData(fftData), .mux_fft_alu(mux_fft_alu)
+);
+*/
 //PC ADD
 pc_add u_pc_add(
     .curr_pc(idex_curr_pc), .imm(idex_imm),

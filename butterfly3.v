@@ -33,7 +33,8 @@ module butterfly3 (
     output reg[`instWidth-1:0] fft_d7_real_o,
     output reg[`instWidth-1:0] fft_d7_imag_o,
     output reg[`instWidth-1:0] fft_d8_real_o,
-    output reg[`instWidth-1:0] fft_d8_imag_o
+    output reg[`instWidth-1:0] fft_d8_imag_o,
+    output reg butterfly3_ready
 );
 always @(posedge clk) begin
     if(butterfly2_ready) begin
@@ -53,6 +54,9 @@ always @(posedge clk) begin
     fft_d7_imag_o <= (fft_d3_imag<<8)+(fft_d7_real<<8);
     fft_d8_real_o <= (fft_d4_real<<8)+fft_d8_real*181-fft_d8_imag*181;
     fft_d8_imag_o <= (fft_d4_imag<<8)+fft_d8_imag*181+fft_d8_real*181;
+    butterfly3_ready <= `funEnable;
+    end else begin
+        butterfly3_ready <= `funDisable;
     end
 end
 endmodule
