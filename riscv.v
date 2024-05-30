@@ -189,19 +189,6 @@ alu u_alu(
     .aluop(alufunc), .alu_result(alu_result),
     .zero(alu_zero)
 );
-/*
-//FFT module
-fft u_fft(
-    .clk(clk), .dataSrc(forward_data_a),
-    .aluop(alufunc), .fftData(fftData),
-    .butterfly3_ready(butterfly3_ready)
-);
-//MUX_FFT_ALU
-mux_fft_alu u_mux_fft_alu(
-    .butterfly3_ready(butterfly3_ready), .alu_result(alu_result),
-    .fftData(fftData), .mux_fft_alu(mux_fft_alu)
-);
-*/
 //PC ADD
 pc_add u_pc_add(
     .curr_pc(idex_curr_pc), .imm(idex_imm),
