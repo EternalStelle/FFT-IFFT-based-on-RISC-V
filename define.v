@@ -8,7 +8,7 @@
 `define jumpJALR 2'b10
 //Inst mem Definition
 `define instMemAddrDepth 1024
-`define instMenAddrWidth 10
+`define instMenAddrWidth 10 //2^10=1024
 //Register Definition
 `define regAddrDepth 32
 `define regAddrWidth 5
@@ -19,6 +19,9 @@
 `define opcodeS 7'b0100011
 `define opcodeB 7'b1100011
 //`define opcodeU 7'b0110111
+//ALUSRC
+`define aluSrcReg 1'b0
+`define aluSrcImm 1'b1
 //ALU CTRL definition
 `define aluR 2'b00
 `define aluLoad 2'b01
