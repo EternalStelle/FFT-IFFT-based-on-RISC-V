@@ -1,13 +1,16 @@
 `include "define.v"
-module alu_ctrl (input wire[1:0] aluop,
-                 input wire[2:0] funct3,
-                 input wire[6:0] funct7,
-                 output reg[`aluOP-1:0] alufunc);
+module alu_ctrl (
+    input wire [1:0] aluop,
+    input wire [2:0] funct3,
+    input wire [6:0] funct7,
+    output reg [`aluOP-1:0] alufunc
+);
     always @(*) begin
         case (aluop)
             `aluR: begin
                 case (funct3)
-                    3'h0: case (funct7)
+                    3'h0:
+                    case (funct7)
                         7'h00: alufunc = `aluPlus;
                         7'h20: alufunc = `aluSub;
                         7'h01: alufunc = `aluMul;
