@@ -6,6 +6,8 @@
 `define jumpDisable 2'b00
 `define jumpJAL 2'b01
 `define jumpJALR 2'b10
+`define wn 64'h000000000000002D
+`define nwn 32'h8000002D
 //Inst mem Definition
 `define instMemAddrDepth 1024
 `define instMenAddrWidth 10 //2^10=1024
@@ -23,11 +25,12 @@
 `define aluSrcReg 1'b0
 `define aluSrcImm 1'b1
 //ALU CTRL definition
-`define aluR 2'b00
-`define aluLoad 2'b01
-`define aluStore 2'b01
-`define aluBranch 2'b10
-`define aluSrcAUIPC 2'b11
+`define aluR 3'b000
+`define aluLoad 3'b001
+`define aluStore 3'b001
+`define aluBranch 3'b010
+`define aluSrcAUIPC 3'b011
+`define aluI 3'b100
 //ALU definition
 `define aluOP 6
 `define aluPlus `aluOP'b000000

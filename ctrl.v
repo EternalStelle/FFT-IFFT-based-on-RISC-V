@@ -7,7 +7,7 @@ module ctrl (
     output reg mem2reg,    //读取数据存储器至寄存器
     output reg mem_rena,   //数据存储器使能读
     output reg mem_wena,   //数据存储器使能写
-    output reg[1:0] aluop,
+    output reg[2:0] aluop,
     output reg alusrc,
     output reg[1:0] jump
 );
@@ -29,7 +29,7 @@ module ctrl (
                 mem2reg  <= `funDisable;
                 mem_rena <= `funDisable;
                 mem_wena <= `funDisable;
-                aluop    <= `aluR;
+                aluop    <= `aluI;
                 alusrc   <= `aluSrcImm;
                 jump     <= `jumpDisable;
             end

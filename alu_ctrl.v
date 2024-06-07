@@ -1,6 +1,6 @@
 `include "define.v"
 module alu_ctrl (
-    input wire [1:0] aluop,
+    input wire [2:0] aluop,
     input wire [2:0] funct3,
     input wire [6:0] funct7,
     output reg [`aluOP-1:0] alufunc
@@ -52,6 +52,18 @@ module alu_ctrl (
                     3'h5: alufunc = (funct7 == 7'h20) ? `aluSRA : `aluSRL;
                     3'h2: alufunc = `aluSLT;
                     3'h3: alufunc = `aluSLTU;
+                endcase
+            end
+            `aluI: begin
+                case (funct3)
+                3'h0: alufunc <= `aluPlus;
+                3'h4: alufunc <= `aluXor;
+                3'h6: alufunc <= `aluOr;
+                3'h7: alufunc <= `aluAnd;
+                3'h1: alufunc <= `aluSLL;
+                3'h5: alufunc <= (funct7 == 7'h20) ? `aluSRA : `aluSRL;
+                3'h2: alufunc <= `aluSLT;
+                3'h3: alufunc <= `aluSLTU;
                 endcase
             end
             `aluStore: alufunc = `aluPlus;
