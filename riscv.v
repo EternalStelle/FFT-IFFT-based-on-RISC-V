@@ -22,7 +22,7 @@ module riscv (
     wire ctrl_mem2reg;
     wire ctrl_mem_rena;
     wire ctrl_mem_wena;
-    wire [1:0] ctrl_aluop;
+    wire [2:0] ctrl_aluop;
     wire ctrl_alusrc;
     wire [1:0] ctrl_jump;
     //Immediate Number generator output
@@ -37,7 +37,7 @@ module riscv (
     wire idex_reg_wena;
     wire idex_mem_rena;
     wire idex_mem_wena;
-    wire [1:0] idex_aluop;
+    wire [2:0] idex_aluop;
     wire idex_alusrc;
     wire [1:0] idex_jump;
     wire [2:0] idex_funct3;
