@@ -56,14 +56,14 @@ module alu_ctrl (
             end
             `aluI: begin
                 case (funct3)
-                3'h0: alufunc <= `aluPlus;
-                3'h4: alufunc <= `aluXor;
-                3'h6: alufunc <= `aluOr;
-                3'h7: alufunc <= `aluAnd;
-                3'h1: alufunc <= `aluSLL;
-                3'h5: alufunc <= (funct7 == 7'h20) ? `aluSRA : `aluSRL;
-                3'h2: alufunc <= `aluSLT;
-                3'h3: alufunc <= `aluSLTU;
+                    3'h0: alufunc <= `aluPlus;
+                    3'h4: alufunc <= `aluXor;
+                    3'h6: alufunc <= `aluOr;
+                    3'h7: alufunc <= `aluAnd;
+                    3'h1: alufunc <= `aluSLL;
+                    3'h5: alufunc <= (funct7 == 7'h20) ? `aluSRA : `aluSRL;
+                    3'h2: alufunc <= `aluSLT;
+                    3'h3: alufunc <= `aluSLTU;
                 endcase
             end
             `aluStore: alufunc = `aluPlus;

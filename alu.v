@@ -302,22 +302,22 @@ module alu (
             end
             `aluIFFTCAL3: begin
                 // 三级蝶形电路计算
-                fft3_d0_real <= (ifft2_d0_real + ifft2_d1_real)>>>3;
-                fft3_d0_imag <= (ifft2_d0_imag + ifft2_d1_imag)>>>3;
-                fft3_d1_real <= (ifft2_d4_real + ifft2_d5_real)>>>3;
-                fft3_d1_imag <= (ifft2_d4_imag + ifft2_d5_imag)>>>3;
-                fft3_d2_real <= (ifft2_d2_real + ifft2_d3_real)>>>3;
-                fft3_d2_imag <= (ifft2_d2_imag + ifft2_d3_imag)>>>3;
-                fft3_d3_real <= (ifft2_d6_real + ifft2_d7_real)>>>3;
-                fft3_d3_imag <= (ifft2_d6_imag + ifft2_d7_imag)>>>3;
-                fft3_d4_real <= (ifft2_d0_real - ifft2_d1_real)>>>3;
-                fft3_d4_imag <= (ifft2_d0_imag - ifft2_d1_imag)>>>3;
-                fft3_d5_real <= (ifft2_d4_real - ifft2_d5_real)>>>3;
-                fft3_d5_imag <= (ifft2_d4_imag - ifft2_d5_imag)>>>3;
-                fft3_d6_real <= (ifft2_d2_real - ifft2_d3_real)>>>3;
-                fft3_d6_imag <= (ifft2_d2_imag - ifft2_d3_imag)>>>3;
-                fft3_d7_real <= (ifft2_d6_real - ifft2_d7_real)>>>3;
-                fft3_d7_imag <= (ifft2_d6_imag - ifft2_d7_imag)>>>3;
+                fft3_d0_real <= (ifft2_d0_real + ifft2_d1_real) >>> 3;
+                fft3_d0_imag <= (ifft2_d0_imag + ifft2_d1_imag) >>> 3;
+                fft3_d1_real <= (ifft2_d4_real + ifft2_d5_real) >>> 3;
+                fft3_d1_imag <= (ifft2_d4_imag + ifft2_d5_imag) >>> 3;
+                fft3_d2_real <= (ifft2_d2_real + ifft2_d3_real) >>> 3;
+                fft3_d2_imag <= (ifft2_d2_imag + ifft2_d3_imag) >>> 3;
+                fft3_d3_real <= (ifft2_d6_real + ifft2_d7_real) >>> 3;
+                fft3_d3_imag <= (ifft2_d6_imag + ifft2_d7_imag) >>> 3;
+                fft3_d4_real <= (ifft2_d0_real - ifft2_d1_real) >>> 3;
+                fft3_d4_imag <= (ifft2_d0_imag - ifft2_d1_imag) >>> 3;
+                fft3_d5_real <= (ifft2_d4_real - ifft2_d5_real) >>> 3;
+                fft3_d5_imag <= (ifft2_d4_imag - ifft2_d5_imag) >>> 3;
+                fft3_d6_real <= (ifft2_d2_real - ifft2_d3_real) >>> 3;
+                fft3_d6_imag <= (ifft2_d2_imag - ifft2_d3_imag) >>> 3;
+                fft3_d7_real <= (ifft2_d6_real - ifft2_d7_real) >>> 3;
+                fft3_d7_imag <= (ifft2_d6_imag - ifft2_d7_imag) >>> 3;
             end
             `aluFFTExportData0Real: begin
                 alu_result <= fft3_d0_real;
