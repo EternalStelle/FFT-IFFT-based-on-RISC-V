@@ -1,5 +1,5 @@
 # Design programme
-The design of a RISC-V CPU with FFT/IFFT support is carried out according to the basic design of Computer Composition and Design: Hardware-Software Interfaces (Original Book 5th Edition - RISC-V Edition) (David A. Patterson etc.).
+The design of a RISC-V CPU with FFT/IFFT support is carried out according to the Computer Organizarion and Design: The Hardware-Software Interfaces (Original Book 5th Edition - RISC-V Edition) (David A. Patterson etc.).
 # Support for FFT and IFFT
 ## A custom instruction set is used to complete the design, which is based on the R-type instructions.
 | funct7 | meaning | funct7 | meaning |
