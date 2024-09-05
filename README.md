@@ -31,5 +31,4 @@ In my design, I divided the 32 bits into three parts, the highest bit is the sig
 4. Then use the value of funct7 to input operations to export all results to registers.
 5. In Questa(This is what I use in Quartus), change the format of results according to designed format to show accurate numbers.
 
-** All C files are just used for validating results.
-** All Verilog files needed are already set in riscv.v file.
+** All C files are just used for validating results. All Verilog files needed are already set in riscv.v file.
