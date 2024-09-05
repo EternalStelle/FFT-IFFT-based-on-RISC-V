@@ -1,5 +1,7 @@
 # 设计方案
 按照《计算机组成与设计：硬件软件接口（原书第5版·RISC-V版） (戴维 A.帕特森 (David A. Patterson) etc.)》的基础设计进行支持FFT/IFFT的RISC-V的CPU的设计。
+
+该项目用于完成暨大FPGA课程的作业。
 # 对FFT与IFFT的支持
 ## 采用了自定义指令集的方式完成设计，在R型指令的基础上进行修改。
 | funct7 | 含义                           | funct7   | 含义 |
