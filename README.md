@@ -29,4 +29,7 @@ In my design, I divided the 32 bits into three parts, the highest bit is the sig
 2. Use the value of funct7 in the above table to write the instruction for the calculation. For example, the instruction to load the x1 register as the real part of the first number and x2 register as the imaginary part of the first number can be written as follows: 0010000_00010_00001_000_00000_0110011 (binary), which is 20208033 (hexadecimal).
 3. After load all 8 numbers with real and imaginary parts, we could manually input 3-times butterfly calculation operations.
 4. Then use the value of funct7 to input operations to export all results to registers.
-5. In Questa(This is what I use in Quartus), change the format of results according to designed format to show accurate numbers. 
+5. In Questa(This is what I use in Quartus), change the format of results according to designed format to show accurate numbers.
+
+** All C files are just used for validating results.
+** All Verilog files needed are already set in riscv.v file.
