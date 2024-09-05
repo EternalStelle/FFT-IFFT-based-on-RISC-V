@@ -1,5 +1,6 @@
 `include "define.v"
 module imm_gen (
+    //立即数生成器
     input  wire [`instWidth-1:0] inst,
     output reg  [`instWidth-1:0] imm
 );

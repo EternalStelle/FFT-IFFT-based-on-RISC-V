@@ -1,5 +1,6 @@
 `include "define.v"
 module mem_wb (
+    //MEM_WB流水线寄存器
     input wire clk,
     input wire rst,
     input wire [`instWidth-1:0] mem_data,

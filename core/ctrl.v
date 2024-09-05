@@ -1,5 +1,5 @@
 `include "define.v"
-//CTRL module
+//CTRL模块
 module ctrl (
     input wire[6:0] inst,  //指令输入
     output reg branch,     //分支跳跃标志
@@ -7,9 +7,9 @@ module ctrl (
     output reg mem2reg,    //读取数据存储器至寄存器
     output reg mem_rena,   //数据存储器使能读
     output reg mem_wena,   //数据存储器使能写
-    output reg[2:0] aluop,
-    output reg alusrc,
-    output reg[1:0] jump
+    output reg[2:0] aluop, //ALU操作大类
+    output reg alusrc,     //ALU数据源
+    output reg[1:0] jump   //跳转指令类型
 );
     always @(*) begin
         case (inst)

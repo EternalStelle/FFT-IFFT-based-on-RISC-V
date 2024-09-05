@@ -1,5 +1,5 @@
 `include "define.v"
-//Data forward execution unit A
+//数据前递器A
 module forward_a (
     input wire [1:0] forward_decision,
     input wire [`instWidth-1:0] idex_reg1_data,

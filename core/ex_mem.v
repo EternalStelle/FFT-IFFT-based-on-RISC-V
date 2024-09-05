@@ -1,5 +1,6 @@
 `include "define.v"
 module ex_mem (
+    //EX_MEM流水线寄存器
     input wire clk,
     input wire rst,
     input wire [`instWidth-1:0] pcWithImm,

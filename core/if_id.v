@@ -1,9 +1,10 @@
 `include "define.v"
 module if_id (
+//IF_ID流水线寄存器
     input wire clk,
     input wire rst,
-    input wire pipelineFlush,
-    input wire ifid_hazarded,
+    input wire pipelineFlush, //流水线清空
+    input wire ifid_hazarded, //IF_ID控制冒险信号
     input wire [`instWidth-1:0] curr_pc,
     input wire [`instWidth-1:0] inst,
     output reg [`instWidth-1:0] curr_pc_o,

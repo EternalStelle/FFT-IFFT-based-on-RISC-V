@@ -1,5 +1,6 @@
 `include "define.v"
 module id_ex (
+    //ID_EX流水线寄存器
     input wire clk,
     input wire rst,
     input wire [`instWidth-1:0] curr_pc,

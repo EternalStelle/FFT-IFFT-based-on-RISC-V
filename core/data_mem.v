@@ -1,5 +1,5 @@
 `include "define.v"
-//Data memory
+//数据存储器
 module data_mem (
     input wire mem_wena,
     input wire [`instWidth-1:0] mem_wdata,
@@ -7,7 +7,7 @@ module data_mem (
     input wire mem_rena,
     output reg [`instWidth-1:0] mem_data_o
 );
-    //Regs initialization
+    //存储器初始化
     reg [`instWidth-1:0] regs[0:`regAddrDepth-1];
     integer i;
     initial begin
@@ -16,7 +16,7 @@ module data_mem (
             //regs[i] = i;
         end
     end
-    //read mem
+    //读取存储器
     always @(*) begin
         if (!mem_rena) begin
             mem_data_o <= `zeroWord;
@@ -24,7 +24,7 @@ module data_mem (
             mem_data_o <= regs[mem_addr];
         end
     end
-    //write mem
+    //写入存储器
     always @(*) begin
         if (mem_wena) begin
             regs[mem_addr] <= mem_wdata;
